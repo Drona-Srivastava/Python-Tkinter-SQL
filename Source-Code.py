@@ -1,3 +1,8 @@
+'''
+Developments to be done:-
+Display record with search 
+Give option with search criteria (search by name emp code or any other criteria)
+'''
 import tkinter as tk
 from tkinter import StringVar
 from tkinter import messagebox
