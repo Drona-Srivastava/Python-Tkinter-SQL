@@ -6,7 +6,7 @@ Give option with search criteria (search by name emp code or any other criteria)
 import tkinter as tk
 from tkinter import StringVar
 from tkinter import messagebox
-import mysql.connector as sq
+import pymysql as sq
 
 # Creating a Database and Table to store all the records of the company employees
 def create():
@@ -22,12 +22,19 @@ def create():
 # Checking the existence of the database and to create if does not exist and create if does not exist
 def check_database_existence():
     try:
-        mydb = sq.connect(host="localhost",user="root",password="root",database="company_database")
-    except sq.Error as e:
-        if e.errno == 1049:  # MySQL error code for "Unknown database"
+        # Attempt to connect to the specified database
+        mydb = sq.connect(host="localhost", user="root", password="root", database="company_database")
+        print("Connected to 'company_database'!")
+        mydb.close()
+    except sq.OperationalError as e:
+        if e.args[0] == 1049:  # MySQL error code for "Unknown database"
+            print("Database 'company_database' does not exist.")
+            # Handle creating the database or other logic here
+            print("Creating Database")
             create()
         else:
-            print(f"Error: {e}")
+            print(f"MySQL connection error: {e}")
+            # Handle other errors here
 check_database_existence()
 
 # Re-opening the root window which asks for function the user want to apply
