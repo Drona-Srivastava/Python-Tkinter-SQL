@@ -20,12 +20,12 @@ def create():
 def check_database_existence():
     try:
         # Attempt to connect to the specified database
-        mydb = sq.connect(host="localhost", user="root", password="root", database="company_database")
-        print("Connected to 'company_database'!")
+        mydb = sq.connect(host="localhost", user="root", password="root", database="Movie_database")
+        print("Connected to 'Movie_database'!")
         mydb.close()
     except sq.OperationalError as e:
         if e.args[0] == 1049:  # MySQL error code for "Unknown database"
-            print("Database 'company_database' does not exist.")
+            print("Database 'Movie_database' does not exist.")
             # Handle creating the database or other logic here
             print("Creating Database")
             create()
@@ -37,12 +37,13 @@ check_database_existence()
 
 #Re-opening the menu window whenever the close button is clicked.
 def recreate_root():
+    global root
     root=tk.Tk()
     root.geometry('690x350')
     root.configure(bg='#cc0066')
     root.title('Menu')
     lab3=tk.Label(root, text="WELCOME TO BLOCKBUSTER: A Movie Database",font=('Cascadia Mono SemiLight',16,'bold'),bg='#cc0066')
-    lab6=tk.Label(root, text="Made By: Drona Srivastava",font=('Cascadia Mono SemiLight',16,'bold'),bg='#cc0066')
+    lab6=tk.Label(root, text="Made By: Atharava Srivastava",font=('Cascadia Mono SemiLight',16,'bold'),bg='#cc0066')
     lab3.pack()  
     lab6.pack()    
 
@@ -461,7 +462,7 @@ root.geometry('690x350')
 root.configure(bg='#cc0066')
 root.title('Menu')
 lab3=tk.Label(root, text="WELCOME TO BLOCKBUSTER: A Movie Database",font=('Cascadia Mono SemiLight',16,'bold'),bg='#cc0066')
-lab6=tk.Label(root, text="Made By: Drona Srivastava",font=('Cascadia Mono SemiLight',16,'bold'),bg='#cc0066')
+lab6=tk.Label(root, text="Made By: Atharava Srivastava",font=('Cascadia Mono SemiLight',16,'bold'),bg='#cc0066')
 lab3.pack()  
 lab6.pack()    
 
